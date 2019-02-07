@@ -40,7 +40,7 @@ class Manager(object):
         markTask = editTask.replace(taskCompleted, taskCompleted + " " + str(True))
         # opening the file to so i can write in the new tasks
         newMarkedTask = open("todos.txt", "w+")
-        if newMarkedTask != markTask:
+        if newMarkedTask == markTask:
             # writing the replaced data to the new instance of the file
             newMarkedTask.write(markTask)
         else:
