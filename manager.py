@@ -2,8 +2,8 @@ import item
 
 class Manager(Item):
 
-    def add_tem(text):
-        newitem = Item.list_item.append(text)
+    def add_item(text):
+        newitem = Item.lists.append(text)
 
 
     def completed(self):
