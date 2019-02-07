@@ -1,6 +1,4 @@
-import datetime
-import time
-from datetime import date
+
 
 
 
@@ -11,9 +9,3 @@ class Item(object):
         self.task = task
         self.completed = completed
         self.date = date.datetime.now()
-
-
-
-task1 = Item()
-task1.task('Mop the floor')
-task1.completed(False)
