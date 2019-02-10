@@ -5,20 +5,14 @@ import item
 
 class Manager(object):
     def showItems():
-        print('type show to see list')
-        choice = input('> ')
 
         # variable to hold all the content inside of the todos.txt
         readItems = open("todos.txt", "r")# read mode
         # creating an if statement so that you can choose what you want to do
-        if choice == 'show':
             # setting the contents inside the variable readitems to the message
-            message = readItems.read()
-            print(message)
-        else:
-            print('Not a command')
+        message = readItems.read()
+        print(message)
         readItems.close()
-
 
     def CreateNewTask():
         now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -35,17 +29,14 @@ class Manager(object):
     def markComplete():
         # Creating variable to hold the contents in the file
         editTask = open("todos.txt").read()
-        taskCompleted = input("Did you complete anything today? I hope so! ")
+        taskCompleted = input("Have you finished any tasks?")
         # new variable to hold the new contents
         markTask = editTask.replace(taskCompleted, taskCompleted + " " + str(True))
         # opening the file to so i can write in the new tasks
         newMarkedTask = open("todos.txt", "w+")
-        if newMarkedTask != markTask:
-            # writing the replaced data to the new instance of the file
-            newMarkedTask.write(markTask)
-        else:
-            print('You dont have that task in your list')
-            # always close open
+        # writing the replaced data to the new instance of the file
+        newMarkedTask.write(markTask)
+        # always close open
         newMarkedTask.close()
 
         printTask = open("todos.txt", "r")
