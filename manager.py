@@ -1,11 +1,11 @@
 import time
 import datetime
 import item
+import dedent
 
 
 class Manager(object):
-    def showItems():
-
+    def showItems(self):
         # variable to hold all the content inside of the todos.txt
         readItems = open("todos.txt", "r")# read mode
         # creating an if statement so that you can choose what you want to do
@@ -14,11 +14,10 @@ class Manager(object):
         print(message)
         readItems.close()
 
-    def CreateNewTask():
+    def CreateNewTask(self):
         now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        print('If you want to create a new item type add')
         choice = input('> ')
-
+        
         of = open("todos.txt","a+")#append mode
         # creating an if statement so that you can choose what you want to do
         task = input("Create A New Task: ")
@@ -26,7 +25,7 @@ class Manager(object):
         of.close()
 
 
-    def markComplete():
+    def markComplete(self):
         # Creating variable to hold the contents in the file
         editTask = open("todos.txt").read()
         taskCompleted = input("Have you finished any tasks?")
@@ -43,6 +42,27 @@ class Manager(object):
         message = printTask.read()
         print(message)
         printTask.close()
+
+    def runner(object):
+        print('What is your name?')
+        name = input('> ')
+        while True:
+            print(f'{name}, Welcome to your todo manager!')
+            choice = input('> ')
+            if choice == 'add' or choice == 'a':
+                self.CreateNewTask()
+            elif choice == 'list' or choice == 'l':
+                self.showItems()
+            elif choice == 'mark' or choice == 'm':
+                self.markComplete()
+            elif choice == 'quit' or choice == 'q':
+                exit(0)
+            elif choice == 'help':
+                print(dedent('''
+                            You may use "add" to update your list with  another task; "list" to show your complete  list; "mark" will ask what task you have    completed; "quit" will exit program.''')
+
+
+
 
 
 
