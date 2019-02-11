@@ -16,12 +16,13 @@ class Manager(object):
     def CreateNewTask(self):
         print('How many entries?')
         amount = input('> ')
+        print('Type "q" to escape')
         # for some reason this is really weird
         if amount < '20':
             while True:
                 task = input("Create A New Task: ")
                 #unfortunately you have to put your name in again -_-
-                if task == 'quit':
+                if task == 'q':
                     self.run()
                 else:
                     now = datetime.datetime.now().strftime("%Y-%m-  %d%H:%M:%S")
@@ -42,6 +43,10 @@ class Manager(object):
         # Creating variable to hold the contents in the file
         editTask = open("todos.txt").read()
         taskCompleted = input("Want to mark anything as completed?")
+        # if taskCompleted == editTask:
+        #     markTask = editTask.replace(taskCompleted, taskCompleted + " " + str(True))
+        # else:
+        #     print('You dont have that task in your list')
         # new variable to hold the new contents
         markTask = editTask.replace(taskCompleted, taskCompleted + " " + str(True))
         # opening the file to so i can write in the new tasks
