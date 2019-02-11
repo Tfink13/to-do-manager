@@ -8,27 +8,36 @@ class Manager(object):
     def showItems(self):
         # variable to hold all the content inside of the todos.txt
         readItems = open("todos.txt", "r")# read mode
-        # creating an if tatement so that you can choose what you want to do
         # setting the contents inside the variable readitems to the message
         message = readItems.read()
         print(message)
         readItems.close()
 
-    def CreateNewTask(self, amount):
-        for amount in range(20):
-            now = datetime.datetime.now().strftime("%Y-%m-%d%H:%M:%S")
-            of = open("todos.txt","a+")#append mode
-            # creating an if statement so that you can choose what you want to do
-            task = input("Create A New Task: ")
-            of.write("\n" + now + " " + task + str(False))
-            of.close()
+    def CreateNewTask(self):
+        print('How many entries?')
+        amount = input('> ')
+        # for some reason this is really weird
+        if amount < '20':
+            while True:
+                task = input("Create A New Task: ")
+                #unfortunately you have to put your name in again -_-
+                if task == 'quit':
+                    self.run()
+                else:
+                    now = datetime.datetime.now().strftime("%Y-%m-  %d%H:%M:%S")
+                    of = open("todos.txt","a+")#append mode
+                    # creating an if statement so that you can choose what  you want to do
+
+                    of.write("\n" + now + " " + task)
+        else:
+            print("You may not enter more than 20 at once.")
 
     def markComplete(self):
         # I wanted to print the list so you are able to see what is int he list. Neither True or False means it was not completed
         printTask = open("todos.txt", "r")
         message = printTask.read()
         print(message)
-        printTask.close()
+
 
         # Creating variable to hold the contents in the file
         editTask = open("todos.txt").read()
@@ -43,8 +52,6 @@ class Manager(object):
         newMarkedTask.close()
 
 
-        printTask = open("todos.txt", "r")
-        message = printTask.read()
         print(message)
         printTask.close()
 
@@ -59,12 +66,7 @@ class Manager(object):
             # the choice is the command you will choose
             choice = input('> ')
             if choice == 'add' or choice == 'a':
-                print('How many entries?')
-                amount = input('> ')
-                if amount >= '20':
-                    print('You may not have that many entries.')
-                else:
-                    self.CreateNewTask()
+                self.CreateNewTask()
             elif choice == 'list' or choice == 'l':
                 print(f"{name}'s Todo List")
                 self.showItems()
