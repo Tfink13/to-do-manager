@@ -15,7 +15,7 @@ class Manager(object):
         readItems.close()
 
     def CreateNewTask(self, amount):
-        for amount in range(20):
+        for amount in range(0):
             now = datetime.datetime.now().strftime("%Y-%m-%d%H:%M:%S")
             of = open("todos.txt","a+")#append mode
             # creating an if statement so that you can choose what you want to do
@@ -54,6 +54,7 @@ class Manager(object):
         print('What is your name?')
         name = input('> ')
         print(f'{name}, Welcome to your todo manager!')
+        # The while true was a great idea for making my program, acctually able to be "inside" of it Thanks Zach!.
         while True:
             choice = input('> ')
             if choice == 'add' or choice == 'a':
@@ -64,6 +65,7 @@ class Manager(object):
                 else:
                     self.CreateNewTask(amount)
             elif choice == 'list' or choice == 'l':
+                print(f"{name}'s Todo List")
                 self.showItems()
             elif choice == 'mark' or choice == 'm':
                 self.markComplete()
