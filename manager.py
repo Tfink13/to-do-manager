@@ -14,24 +14,22 @@ class Manager(object):
         readItems.close()
 
     def CreateNewTask(self):
-        print('How many entries?')
-        amount = input('> ')
+        print('Enter as many entries as you like.')
         print('Type "q" to escape')
         # for some reason this is really weird
-        if amount < '20':
-            while True:
-                task = input("Create A New Task: ")
-                #unfortunately you have to put your name in again -_-
-                if task == 'q':
-                    self.run()
-                else:
-                    now = datetime.datetime.now().strftime("%Y-%m-  %d%H:%M:%S")
-                    of = open("todos.txt","a+")#append mode
-                    # creating an if statement so that you can choose what  you want to do
 
-                    of.write("\n" + now + " " + task)
-        else:
-            print("You may not enter more than 20 at once.")
+        while True:
+            task = input("Create A New Task: ")
+            now = datetime.datetime.now().strftime("%Y-%m-%d%H:%M:%S")
+            of = open("todos.txt","a+")#append mode
+            # creating an if statement so that you can choose what  you want to do
+            of.write("\n" + now + " " + task)
+                #unfortunately you have to put your name in again -_-
+            if task == 'q':
+                self.run()
+            else:
+                of.close()
+
 
     def markComplete(self):
         # I wanted to print the list so you are able to see what is int he list. Neither True or False means it was not completed
@@ -42,7 +40,7 @@ class Manager(object):
 
         # Creating variable to hold the contents in the file
         editTask = open("todos.txt").read()
-        taskCompleted = input("Want to mark anything as completed?")
+        taskCompleted = input("Want to mark anything as completed? ")
         # if taskCompleted == editTask:
         #     markTask = editTask.replace(taskCompleted, taskCompleted + " " + str(True))
         # else:
@@ -60,6 +58,31 @@ class Manager(object):
         print(message)
         printTask.close()
 
+    def delete(self):
+        printTask = open("todos.txt", "r")
+        message = printTask.read()
+        print(message)
+        print('Would you like to delete your to-do list?')
+        choice = input ('> ')
+
+        if choice == 'yes' or choice == 'y':
+            print('Are you sure?')
+            nchoice = input('> ')
+            if choice == 'yes':
+                f = open('todos.txt', 'r+')
+                f.truncate(0)
+            else:
+                print('You have returned to login')
+                self.run()
+
+        elif choice == 'no' or choice == 'n':
+            print('No harm done!')
+            print('You have returned to login')
+            self.run()
+
+        else:
+            print('Not a command')
+        printTask.close()
 
 
     def run(self):
@@ -81,6 +104,13 @@ class Manager(object):
                 exit(0)
             elif choice == 'help':
                 print(dedent('''
-                            You may use "add" to update your list with  another task; "list" to show your complete  list; "mark" will ask what task you have completed; "quit" will exit program.'''))
+                            "add" to update your list
+                            "list" to show your list
+                            "mark" will mark a completed task
+                            "quit" will exit program.
+                            "delete" to delete your entire list'''))
+            elif choice == 'delete':
+                self.delete()
+
             else:
                 print('You can use "help" to see a list of commands')
