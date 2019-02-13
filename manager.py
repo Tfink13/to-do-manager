@@ -20,14 +20,13 @@ class Manager(object):
 
         while True:
             task = input("Create A New Task: ")
-            now = datetime.datetime.now().strftime("%Y-%m-%d%H:%M:%S")
-            of = open("todos.txt","a+")#append mode
-            # creating an if statement so that you can choose what  you want to do
-            of.write("\n" + now + " " + task)
-                #unfortunately you have to put your name in again -_-
             if task == 'q':
                 self.run()
             else:
+                now = datetime.datetime.now().strftime("%Y-%m-%d%H:%M:%S")
+                of = open("todos.txt","a+")
+                # creating an if statement so that you can choose what  you want to do
+                of.write("\n" + now + " " + task)
                 of.close()
 
 
@@ -68,15 +67,13 @@ class Manager(object):
         if choice == 'yes' or choice == 'y':
             print('Are you sure?')
             nchoice = input('> ')
-            if choice == 'yes':
+            if nchoice == 'yes' or nchoice == 'y':
                 print('Your list has been deleted')
-                f = open('todos.txt', 'r')
-                line = f.readline()
-                print(line)
-                # f.truncate(0)
+                f = open('todos.txt', 'r+')
+                f.truncate(0)
             else:
                 print('You have returned to login')
-                self.run()
+
 
         elif choice == 'no' or choice == 'n':
             print('No harm done!')
@@ -85,6 +82,7 @@ class Manager(object):
 
         else:
             print('Not a command')
+
         printTask.close()
 
 
