@@ -69,8 +69,11 @@ class Manager(object):
             print('Are you sure?')
             nchoice = input('> ')
             if choice == 'yes':
-                f = open('todos.txt', 'r+')
-                f.truncate(0)
+                print('Your list has been deleted')
+                f = open('todos.txt', 'r')
+                line = f.readline()
+                print(line)
+                # f.truncate(0)
             else:
                 print('You have returned to login')
                 self.run()
@@ -109,7 +112,7 @@ class Manager(object):
                             "mark" will mark a completed task
                             "quit" will exit program.
                             "delete" to delete your entire list'''))
-            elif choice == 'delete':
+            elif choice == 'delete' or choice == 'd':
                 self.delete()
 
             else:
